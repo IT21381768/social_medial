@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -63,7 +64,27 @@ public class WorkoutPlanController {
     }
     
   
+    
+    //edit part
+    
+    @GetMapping("/editWorkoutPlan/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        WorkoutPlan workoutPlan = workoutPlanRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid workout plan Id:" + id));
+        model.addAttribute("workoutPlan", workoutPlan);
+        return "editWorkoutPlan";
+    }
 
+    @PostMapping("/editWorkoutPlan/{id}")
+    public String editWorkoutPlan(@PathVariable("id") Long id, @ModelAttribute("workoutPlan") WorkoutPlan updatedPlan) {
+        WorkoutPlan workoutPlan = workoutPlanRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid workout plan Id:" + id));
+       
+        workoutPlan.setPlanName(updatedPlan.getPlanName());
+        workoutPlan.setDescription(updatedPlan.getDescription());
+        workoutPlanRepository.save(workoutPlan);
+        return "redirect:/workout-plans"; 
+    }
 
   
     

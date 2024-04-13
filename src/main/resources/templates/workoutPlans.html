@@ -7,35 +7,51 @@
 </head>
 <body>
 <div class="container">
-	<div class="d-flex p-2 bd-highlight justify-content-lg-end">
+    <div class="d-flex p-2 bd-highlight justify-content-lg-end">
         <div sec:authorize="isAuthenticated()">
             <a th:href="@{/logout}">Logout</a>
-             <span>Welcome, <span th:text="${#authentication.name}"></span>!</span>
+            <span>Welcome, <span th:text="${#authentication.name}"></span>!</span>
         </div>
-  </div>  
+    </div>  
     <h2>Workout Plans</h2>
     <table class="table">
         <thead>
             <tr>
                 <th>Plan Name</th>
                 <th>Description</th>
-                <!-- Add additional columns here -->
+                <th>Routine Name</th>
+                <th>Exercise Name</th>
+                <th>Exercise Type</th>
+                <th>Exercise Description</th>
+                <th>Number of Sets</th>
+                <th>Rest Between Sets</th>
+                <th>Duration Per Set</th>
+                <th>Weights</th>
+                <th>Distance</th>
+                <th>Username</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="workoutPlan : ${workoutPlans}">
                 <td th:text="${workoutPlan.planName}"></td>
                 <td th:text="${workoutPlan.description}"></td>
+                <td th:text="${workoutPlan.routineName}"></td>
+                <td th:text="${workoutPlan.exerciseName}"></td>
+                <td th:text="${workoutPlan.exerciseType}"></td>
+                <td th:text="${workoutPlan.exerciseDescription}"></td>
+                <td th:text="${workoutPlan.numberOfSets}"></td>
+                <td th:text="${workoutPlan.restBetweenSets}"></td>
+                <td th:text="${workoutPlan.durationPerSet}"></td>
+                <td th:text="${workoutPlan.weights}"></td>
+                <td th:text="${workoutPlan.distance}"></td>
                 <td th:text="${workoutPlan.username}"></td>
                 <td>
-                    
                     <span th:if="${workoutPlan.username eq #authentication.name}">
                         <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
                     </span>
                 </td>
-                
             </tr>
-            
         </tbody>
     </table>
 </div>
