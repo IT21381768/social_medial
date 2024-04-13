@@ -10,14 +10,12 @@
 <div class="d-flex p-2 bd-highlight justify-content-lg-end">
         <div sec:authorize="isAuthenticated()">
             <a th:href="@{/logout}">Logout</a>
-             <span>Welcome, <span th:text="${#authentication.name}"></span>!</span>
         </div>
   </div>    
-
 <div class="text-center p-3">
-    <h1>This is index page</h1>
-    <a href="/addWorkoutPlan">Add Workout Plan</a>
+	<h1>This is index page</h1>
 </div>
+
 
 </body>
 </html>

@@ -1,6 +1,10 @@
 package com.cbc.controller;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cbc.model.MyUser;
 import com.cbc.repository.UserRepository;
+
+import ch.qos.logback.core.model.Model;
 
 @Controller
 public class LoginController {
@@ -77,6 +83,8 @@ public class LoginController {
     public String index() {
         return "index"; 
     }
-
+	
+	
+	
 	
 }

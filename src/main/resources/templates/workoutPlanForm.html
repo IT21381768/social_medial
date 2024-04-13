@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Workout Plan</title>
+</head>
+<body>
+<div class="container">
+    <h2>Add Workout Plan</h2>
+    <form th:action="@{/addWorkoutPlan}" th:object="${workoutPlan}" method="post">
+        <div class="form-group">
+            <label for="planName">Plan Name:</label>
+            <input type="text" class="form-control" id="planName" th:field="*{planName}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
