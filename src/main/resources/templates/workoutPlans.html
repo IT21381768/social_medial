@@ -4,6 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workout Plans</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .post {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+        .post-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .post-body {
+            margin-bottom: 10px;
+        }
+        .post-footer {
+            color: #888;
+        }
+        .comment {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .comment-form {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -14,46 +48,35 @@
         </div>
     </div>  
     <h2>Workout Plans</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Plan Name</th>
-                <th>Description</th>
-                <th>Routine Name</th>
-                <th>Exercise Name</th>
-                <th>Exercise Type</th>
-                <th>Exercise Description</th>
-                <th>Number of Sets</th>
-                <th>Rest Between Sets</th>
-                <th>Duration Per Set</th>
-                <th>Weights</th>
-                <th>Distance</th>
-                <th>Username</th>
-                <th>Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="workoutPlan : ${workoutPlans}">
-                <td th:text="${workoutPlan.planName}"></td>
-                <td th:text="${workoutPlan.description}"></td>
-                <td th:text="${workoutPlan.routineName}"></td>
-                <td th:text="${workoutPlan.exerciseName}"></td>
-                <td th:text="${workoutPlan.exerciseType}"></td>
-                <td th:text="${workoutPlan.exerciseDescription}"></td>
-                <td th:text="${workoutPlan.numberOfSets}"></td>
-                <td th:text="${workoutPlan.restBetweenSets}"></td>
-                <td th:text="${workoutPlan.durationPerSet}"></td>
-                <td th:text="${workoutPlan.weights}"></td>
-                <td th:text="${workoutPlan.distance}"></td>
-                <td th:text="${workoutPlan.username}"></td>
-                <td>
-                    <span th:if="${workoutPlan.username eq #authentication.name}">
-                        <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div th:each="workoutPlan : ${workoutPlans}" class="post">
+        <div class="post-header">
+            <span th:text="${workoutPlan.planName}"></span> - <span th:text="${workoutPlan.username}"></span>
+        </div>
+        <div class="post-body">
+            <p th:text="${workoutPlan.description}"></p>
+            <p>Routine Name: <span th:text="${workoutPlan.routineName}"></span></p>
+            <p>Exercise Name: <span th:text="${workoutPlan.exerciseName}"></span></p>
+            <p>Exercise Type: <span th:text="${workoutPlan.exerciseType}"></span></p>
+            <p>Exercise Description: <span th:text="${workoutPlan.exerciseDescription}"></span></p>
+            <p>Number of Sets: <span th:text="${workoutPlan.numberOfSets}"></span></p>
+            <p>Rest Between Sets: <span th:text="${workoutPlan.restBetweenSets}"></span></p>
+            <p>Duration Per Set: <span th:text="${workoutPlan.durationPerSet}"></span></p>
+            <p>Weights: <span th:text="${workoutPlan.weights}"></span></p>
+            <p>Distance: <span th:text="${workoutPlan.distance}"></span></p>
+        </div>
+        <div class="post-footer">
+            <span th:if="${workoutPlan.username eq #authentication.name}">
+                <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
+            </span>
+        </div>
+        
+
+            <form th:action="@{'/addComment/' + ${workoutPlan.id}}" method="post" class="comment-form">
+                <input type="text" name="commentText" placeholder="Add a comment">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 </body>
 </html>
