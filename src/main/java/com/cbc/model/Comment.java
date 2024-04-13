@@ -17,7 +17,7 @@ public class Comment {
     @JoinColumn(name = "workout_plan_id")
     private WorkoutPlan workoutPlan;
     private String text;
-
+    private String username;
 
     public Long getId() {
 		return id;
@@ -43,7 +43,7 @@ public class Comment {
 	public void setText(String text) {
 		this.text = text;
 	}
-	private String username;
+	
 
 
 }
