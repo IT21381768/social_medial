@@ -3,6 +3,7 @@ package com.cbc.controller;
 
 import com.cbc.model.WorkoutPlan;
 import com.cbc.repository.WorkoutPlanRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ public class WorkoutPlanController {
 
     @Autowired
     private WorkoutPlanRepository workoutPlanRepository;
+    
+
 
     @GetMapping("/addWorkoutPlan")
     public String showWorkoutPlanForm(Model model) {
@@ -32,5 +35,15 @@ public class WorkoutPlanController {
             return "redirect:/addWorkoutPlan";
         }
     }
+    
+    @GetMapping("/workout-plans")
+    public String index(Model model) {
+      List<WorkoutPlan> workoutPlans = workoutPlanRepository.findAll();
+      System.out.println("workoutPlans size: " + workoutPlans.size()); // Debug statement
+      model.addAttribute("workoutPlans", workoutPlans);
+      return "index";
+    }
+
+
 
 }

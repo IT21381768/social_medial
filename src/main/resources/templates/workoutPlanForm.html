@@ -9,16 +9,53 @@
 <div class="container">
     <h2>Add Workout Plan</h2>
     <form th:action="@{/addWorkoutPlan}" th:object="${workoutPlan}" method="post">
-        <div class="form-group">
-            <label for="planName">Plan Name:</label>
-            <input type="text" class="form-control" id="planName" th:field="*{planName}" required>
-        </div>
-        <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea class="form-control" id="description" th:field="*{description}" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="form-group">
+        <label for="planName">Plan Name:</label>
+        <input type="text" class="form-control" id="planName" th:field="*{planName}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" th:field="*{description}" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="routineName">Routine Name:</label>
+        <input type="text" class="form-control" id="routineName" th:field="*{routineName}">
+    </div>
+    <div class="form-group">
+        <label for="exerciseName">Exercise Name:</label>
+        <input type="text" class="form-control" id="exerciseName" th:field="*{exerciseName}">
+    </div>
+    <div class="form-group">
+        <label for="exerciseType">Exercise Type:</label>
+        <input type="text" class="form-control" id="exerciseType" th:field="*{exerciseType}">
+    </div>
+    <div class="form-group">
+        <label for="exerciseDescription">Exercise Description:</label>
+        <textarea class="form-control" id="exerciseDescription" th:field="*{exerciseDescription}" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="numberOfSets">Number of Sets:</label>
+        <input type="number" class="form-control" id="numberOfSets" th:field="*{numberOfSets}">
+    </div>
+    <div class="form-group">
+        <label for="restBetweenSets">Rest between Sets (seconds):</label>
+        <input type="number" class="form-control" id="restBetweenSets" th:field="*{restBetweenSets}">
+    </div>
+    <div class="form-group">
+        <label for="durationPerSet">Duration per Set (seconds):</label>
+        <input type="number" class="form-control" id="durationPerSet" th:field="*{durationPerSet}">
+    </div>
+    <div class="form-group">
+        <label for="weights">Weights (Optional):</label>
+        <input type="text" class="form-control" id="weights" th:field="*{weights}">
+    </div>
+    <div class="form-group">
+        <label for="distance">Distance (Optional):</label>
+        <input type="text" class="form-control" id="distance" th:field="*{distance}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
 </div>
 </body>
 </html>

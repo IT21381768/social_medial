@@ -26,7 +26,7 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests(
 				(req)->req
 						.requestMatchers("/","/registration","/register").permitAll()
-						.requestMatchers("/index").authenticated()
+						.requestMatchers("/index","/addWorkoutPlan").authenticated()
 						.anyRequest().authenticated()				
 				).formLogin()
         .defaultSuccessUrl("/index") // Redirect to index page after successful login
