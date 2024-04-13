@@ -69,7 +69,7 @@
                 <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
             </span>
         </div>
-        
+         
 
             <form th:action="@{'/addComment/' + ${workoutPlan.id}}" method="post" class="comment-form">
                 <input type="text" name="commentText" placeholder="Add a comment">

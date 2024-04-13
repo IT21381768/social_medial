@@ -3,6 +3,7 @@ package com.cbc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.cbc.model.Comment;
@@ -24,7 +25,7 @@ public class CommentController {
 
     @PostMapping("/addComment/{workoutPlanId}")
     public String addComment(@PathVariable Long workoutPlanId, @RequestParam String commentText) {
-        // Retrieve the currently authenticated user's username
+        
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
@@ -32,11 +33,14 @@ public class CommentController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid workout plan ID: " + workoutPlanId));
 
         Comment comment = new Comment();
-        comment.setUsername(username); // Set the username
+        comment.setUsername(username); 
         comment.setWorkoutPlan(workoutPlan);
         comment.setText(commentText);
         commentRepository.save(comment);
 
         return "redirect:/workout-plans";
     }
+    
+    
+  
 }
