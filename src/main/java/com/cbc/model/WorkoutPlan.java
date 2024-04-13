@@ -43,8 +43,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+
+import org.springframework.security.core.userdetails.User;
 
 @Entity
 public class WorkoutPlan {
@@ -54,8 +57,6 @@ public class WorkoutPlan {
     private Long id;
     private String planName;
     private String description;
-
-    // New fields
     private String routineName;
     private String exerciseName;
     private String exerciseType;
@@ -65,6 +66,7 @@ public class WorkoutPlan {
     private int durationPerSet; 
     private String weights; 
     private String distance; 
+    private String username;
 
 
     public Long getId() {
@@ -162,4 +164,12 @@ public class WorkoutPlan {
     public void setDistance(String distance) {
         this.distance = distance;
     }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
 }
