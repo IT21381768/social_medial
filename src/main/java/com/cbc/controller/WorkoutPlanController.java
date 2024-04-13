@@ -61,7 +61,15 @@ public class WorkoutPlanController {
         model.addAttribute("workoutPlans", workoutPlanRepository.findAll());
         return "workoutPlans";
     }
+    
   
+
+
+  
+    
+    
+    
+    
 
 
 

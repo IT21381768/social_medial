@@ -26,8 +26,16 @@
             <tr th:each="workoutPlan : ${workoutPlans}">
                 <td th:text="${workoutPlan.planName}"></td>
                 <td th:text="${workoutPlan.description}"></td>
-                <!-- Add additional columns here -->
+                <td th:text="${workoutPlan.username}"></td>
+                <td>
+                    
+                    <span th:if="${workoutPlan.username eq #authentication.name}">
+                        <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
+                    </span>
+                </td>
+                
             </tr>
+            
         </tbody>
     </table>
 </div>

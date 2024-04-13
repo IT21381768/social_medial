@@ -68,7 +68,7 @@ public class WorkoutPlan {
     private String distance; 
     private String username;
 
-
+    
     public Long getId() {
         return id;
     }
