@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Plans</title>
+</head>
+<body>
+<div class="container">
+	<div class="d-flex p-2 bd-highlight justify-content-lg-end">
+        <div sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}">Logout</a>
+             <span>Welcome, <span th:text="${#authentication.name}"></span>!</span>
+        </div>
+  </div>  
+    <h2>Workout Plans</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Plan Name</th>
+                <th>Description</th>
+                <!-- Add additional columns here -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="workoutPlan : ${workoutPlans}">
+                <td th:text="${workoutPlan.planName}"></td>
+                <td th:text="${workoutPlan.description}"></td>
+                <!-- Add additional columns here -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

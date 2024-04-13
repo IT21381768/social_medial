@@ -37,11 +37,9 @@ public class WorkoutPlanController {
     }
     
     @GetMapping("/workout-plans")
-    public String index(Model model) {
-      List<WorkoutPlan> workoutPlans = workoutPlanRepository.findAll();
-      System.out.println("workoutPlans size: " + workoutPlans.size()); // Debug statement
-      model.addAttribute("workoutPlans", workoutPlans);
-      return "index";
+    public String displayWorkoutPlans(Model model) {
+        model.addAttribute("workoutPlans", workoutPlanRepository.findAll());
+        return "workoutPlans";
     }
 
 
