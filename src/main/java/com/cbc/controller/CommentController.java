@@ -42,12 +42,14 @@ public class CommentController {
         return "redirect:/workout-plans";
     }
     
-    @GetMapping("/comments")
-    public String displayAllComments(Model model) {
-        List<Comment> comments = commentRepository.findAll();
+    @GetMapping("/comments/{workoutPlanId}")
+    public String displayCommentsForWorkoutPlan(@PathVariable("workoutPlanId") Long workoutPlanId, Model model) {
+        List<Comment> comments = commentRepository.findByWorkoutPlanId(workoutPlanId);
         model.addAttribute("comments", comments);
         return "workoutPlanComments";
     }
+
+
 
     
     
