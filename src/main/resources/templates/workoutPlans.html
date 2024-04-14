@@ -67,6 +67,9 @@
         <div class="post-footer">
             <span th:if="${workoutPlan.username eq #authentication.name}">
                 <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
+                <form th:action="@{'/deleteWorkoutPlan/' + ${workoutPlan.id}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
             </span>
              <span>
        			 <a th:href="@{'/comments'}">View Comments</a>

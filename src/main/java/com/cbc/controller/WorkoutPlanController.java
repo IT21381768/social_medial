@@ -82,13 +82,38 @@ public class WorkoutPlanController {
        
         workoutPlan.setPlanName(updatedPlan.getPlanName());
         workoutPlan.setDescription(updatedPlan.getDescription());
+        workoutPlan.setRoutineName(updatedPlan.getRoutineName());
+        workoutPlan.setExerciseName(updatedPlan.getExerciseName());
+        workoutPlan.setExerciseType(updatedPlan.getExerciseType());
+        workoutPlan.setExerciseDescription(updatedPlan.getExerciseDescription());
+        workoutPlan.setNumberOfSets(updatedPlan.getNumberOfSets());
+        workoutPlan.setRestBetweenSets(updatedPlan.getRestBetweenSets());
+        workoutPlan.setDurationPerSet(updatedPlan.getDurationPerSet());
+        workoutPlan.setWeights(updatedPlan.getWeights());
+        workoutPlan.setDistance(updatedPlan.getDistance());
+        
         workoutPlanRepository.save(workoutPlan);
         return "redirect:/workout-plans"; 
     }
 
   
-    
-    
+   //delete
+    @PostMapping("/deleteWorkoutPlan/{id}")
+    public String deleteWorkoutPlan(@PathVariable Long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        WorkoutPlan workoutPlan = workoutPlanRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid workout plan ID: " + id));
+
+        if (!workoutPlan.getUsername().equals(username)) {
+            throw new IllegalStateException("You are not authorized to delete this workout plan.");
+        }
+
+        workoutPlanRepository.delete(workoutPlan);
+
+        return "redirect:/workout-plans";
+    }
     
     
 
