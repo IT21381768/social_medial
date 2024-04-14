@@ -68,13 +68,18 @@
             <span th:if="${workoutPlan.username eq #authentication.name}">
                 <a th:href="@{'/editWorkoutPlan/' + ${workoutPlan.id}}">Edit</a>
             </span>
+             <span>
+       			 <a th:href="@{'/comments'}">View Comments</a>
+   			 </span>
         </div>
          
                <div class="comments">
             <h3>Comments</h3>
-            <div th:each="comment : ${workoutPlan.id}" class="comment">
-                
-            </div>
+            <div th:each="comment : ${comments}" class="comment">
+    <p><strong>Username: </strong><span th:text="${comment.username}"></span></p>
+    <p><strong>Comment: </strong><span th:text="${comment.text}"></span></p>
+</div>
+
         </div>
             <form th:action="@{'/addComment/' + ${workoutPlan.id}}" method="post" class="comment-form">
                 <input type="text" name="commentText" placeholder="Add a comment">
@@ -84,4 +89,5 @@
     </div>
 </div>
 </body>
+
 </html>

@@ -10,6 +10,7 @@ import com.cbc.model.Comment;
 import com.cbc.model.WorkoutPlan;
 import com.cbc.repository.CommentRepository;
 import com.cbc.repository.WorkoutPlanRepository;
+import java.util.List;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
@@ -41,6 +42,16 @@ public class CommentController {
         return "redirect:/workout-plans";
     }
     
+    @GetMapping("/comments")
+    public String displayAllComments(Model model) {
+        List<Comment> comments = commentRepository.findAll();
+        model.addAttribute("comments", comments);
+        return "workoutPlanComments";
+    }
+
     
+    
+    
+
   
 }
