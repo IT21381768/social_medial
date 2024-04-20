@@ -71,6 +71,7 @@
                 <p>Duration Per Set: <span th:text="${workoutPlan.durationPerSet}"></span></p>
                 <p>Weights: <span th:text="${workoutPlan.weights}"></span></p>
                 <p>Distance: <span th:text="${workoutPlan.distance}"></span></p>
+                <p>targetedHours: <span th:text="${workoutPlan.targetedHours}"></span></p>
             </div>
             <div class="post-footer">
                 <span th:if="${workoutPlan.username eq #authentication.name}">
@@ -81,10 +82,17 @@
                 </span>
                 <span>
                    <a th:href="@{'/comments/' + ${workoutPlan.id}}">View Comments</a>
+                   <a th:href="@{'/addWorkoutPlanStatus/' + ${workoutPlan.id}}">Add status</a>
                 </span>
             </div>
 
-            <div class="comments">
+            <form th:action="@{'/addComment/' + ${workoutPlan.id}}" method="post" class="comment-form">
+                <input type="text" name="commentText" placeholder="Add a comment">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div>
+			<div class="comments">
                 <h3>Comments</h3>
                 <div th:each="comment : ${comments}" class="comment">
                     <p><strong>Username: </strong><span th:text="${comment.username}"></span></p>
@@ -92,11 +100,7 @@
                 </div>
 
             </div>
-            <form th:action="@{'/addComment/' + ${workoutPlan.id}}" method="post" class="comment-form">
-                <input type="text" name="commentText" placeholder="Add a comment">
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+		</div>
     </div>
     </div>
 </body>

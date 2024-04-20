@@ -91,6 +91,7 @@ public class WorkoutPlanController {
         workoutPlan.setDurationPerSet(updatedPlan.getDurationPerSet());
         workoutPlan.setWeights(updatedPlan.getWeights());
         workoutPlan.setDistance(updatedPlan.getDistance());
+        workoutPlan.setTargetedHours(updatedPlan.getTargetedHours());
         
         workoutPlanRepository.save(workoutPlan);
         return "redirect:/workout-plans"; 

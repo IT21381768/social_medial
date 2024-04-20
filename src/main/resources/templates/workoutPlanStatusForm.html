@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <h2>Add Workout Plan</h2>
-    <form th:action="@{/addWorkoutPlan}" th:object="${workoutPlan}" method="post">
+    <form th:action="@{'/addWorkoutPlanStatus/' + ${workoutPlanStatus.id}}" th:object="${workoutPlanStatus}" method="post">
     <div class="form-group">
         <label for="planName">Plan Name:</label>
         <input type="text" class="form-control" id="planName" th:field="*{planName}" required>

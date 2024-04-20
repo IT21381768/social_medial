@@ -41,6 +41,7 @@ package com.cbc.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -70,11 +71,16 @@ public class WorkoutPlan {
     private String weights; 
     private String distance; 
     private String username;
+	private int targetedHours;
 
     @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
-
-   
+    
+    @OneToMany(mappedBy = "workoutPlan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<WorkoutPlanStatus> workoutPlanStatus;
+    
+    
+ 
     
     public Long getId() {
         return id;
@@ -178,5 +184,12 @@ public class WorkoutPlan {
     public void setUsername(String username) {
         this.username = username;
     }
+    public int getTargetedHours() {
+		return targetedHours;
+	}
+
+	public void setTargetedHours(int targetedHours) {
+		this.targetedHours = targetedHours;
+	}
     
 }

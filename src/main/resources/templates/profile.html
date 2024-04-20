@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .profile-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .profile-details {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>User Profile</h2>
+        <div class="profile">
+            <div class="profile-header">
+                Profile Information
+            </div>
+            <div class="profile-details">
+                <p><strong>ID: </strong><span th:text="${user.id}"></span></p>
+                <p><strong>Name: </strong><span th:text="${user.name}"></span></p>
+                <p><strong>Username: </strong><span th:text="${user.username}"></span></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
